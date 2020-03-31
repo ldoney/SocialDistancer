@@ -58,7 +58,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labelmap.txt";
   private static final DetectorMode MODE = DetectorMode.TF_OD_API;
   // Minimum detection confidence to track a detection.
-  private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.5f;
+  private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.6f;
   private static final boolean MAINTAIN_ASPECT = false;
   private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
   private static final boolean SAVE_PREVIEW_BITMAP = false;
@@ -139,15 +139,14 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
         new OverlayView.DrawCallback() {
           @Override
           public void drawCallback(final Canvas canvas) {
-            TextView status = (TextView)findViewById(R.id.Status);
             tracker.draw(canvas);
             if(tracker.isClear){
-              status.setTextColor(Color.GREEN);
-              status.setText("Safe!");
+             // status.setTextColor(Color.GREEN);
+              //status.setText("Safe!");
             }else
             {
-              status.setTextColor(Color.RED);
-              status.setText("Too close!");
+              //status.setTextColor(Color.RED);
+              //status.setText("Too close!");
             }
             if (isDebug()) {
               tracker.drawDebug(canvas);

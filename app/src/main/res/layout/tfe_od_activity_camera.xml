@@ -23,7 +23,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="619dp"
+        android:layout_height="683dp"
         android:background="@android:color/black"
         android:orientation="vertical">
 
@@ -32,68 +32,65 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="2dp"
             tools:context="org.tensorflow.demo.CameraActivity">
 
         </FrameLayout>
 
-        <androidx.appcompat.widget.Toolbar
+        <LinearLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="35dp"
             android:layout_alignParentTop="true"
             android:background="@color/tfe_semi_transparent"
-            android:visibility="invisible" />
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:visibility="visible">
 
-        <ImageButton
-            android:id="@+id/InfoButton"
-            android:layout_width="60dp"
-            android:layout_height="54dp"
-            android:background="#00FFFFFF"
-            android:visibility="invisible"
-            app:srcCompat="@android:drawable/ic_menu_info_details" />
+            <TextView
+                android:id="@+id/Title"
+                android:layout_width="295dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="monospace"
+                android:text="Social Distancer"
+                android:textAlignment="center"
+                android:textColor="#FF0000"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/InfoButton"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right|center_vertical"
+                android:background="#00FFFFFF"
+                android:scaleX="1"
+                android:scaleY="1"
+                android:src="@android:drawable/ic_menu_info_details"
+                android:tint="#FF0000"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#000000"
         android:gravity="bottom"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Status"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_gravity="bottom"
-            android:fontFamily="monospace"
-            android:text="Safe!"
-            android:textAlignment="center"
-            android:textColor="#00FF00"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Title"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_gravity="bottom"
-            android:fontFamily="monospace"
-            android:text="Social Distancer"
-            android:textAlignment="center"
-            android:textColor="#FF0000"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
         <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
+            android:id="@+id/adView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:background="#000000"
             app:adSize="BANNER"
-            app:adUnitId="ca-app-pub-2006923484031604/2251488895" />
+            app:adUnitId="ca-app-pub-2006923484031604/7319373939" />
 
     </LinearLayout>
 

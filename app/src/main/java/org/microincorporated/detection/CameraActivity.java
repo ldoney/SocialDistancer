@@ -19,8 +19,10 @@ package org.microincorporated.detection;
 import android.Manifest;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.DrawableContainer;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
@@ -46,7 +48,9 @@ import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -110,12 +114,9 @@ public abstract class CameraActivity extends AppCompatActivity
       public void onInitializationComplete(InitializationStatus initializationStatus) {
       }
     });
-    mAdView = findViewById(R.id.adView);
+    mAdView = findViewById(R.id.adView2);
     AdRequest adRequest = new AdRequest.Builder().build();
     mAdView.loadAd(adRequest);
-    Toolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
-    getSupportActionBar().setDisplayShowTitleEnabled(false);
     if (hasPermission()) {
       setFragment();
     } else {
@@ -186,8 +187,21 @@ public abstract class CameraActivity extends AppCompatActivity
 
     plusImageView.setOnClickListener(this);
     minusImageView.setOnClickListener(this);
-  }
 
+    ImageButton btn = (ImageButton)findViewById(R.id.InfoButton);
+
+    btn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+
+        launchActivity();
+      }
+    });
+  }
+  private void launchActivity() {
+    Intent intent = new Intent(this, InfoActivity.class);
+    startActivity(intent);
+  }
   protected int[] getRgbBytes() {
     imageConverter.run();
     return rgbBytes;
@@ -212,11 +226,10 @@ public abstract class CameraActivity extends AppCompatActivity
     try {
       // Initialize the storage bitmaps once when the resolution is known.
       if (rgbBytes == null) {
-        Camera.Size previewSize = camera.getParameters().getPreviewSize();
-        previewHeight = previewSize.height;
-        previewWidth = previewSize.width;
+        previewHeight = findViewById(R.id.container).getHeight();
+        previewWidth = findViewById(R.id.container).getWidth();
         rgbBytes = new int[previewWidth * previewHeight];
-        onPreviewSizeChosen(new Size(previewSize.width, previewSize.height), 90);
+        onPreviewSizeChosen(new Size(previewWidth, previewHeight), 90);
       }
     } catch (final Exception e) {
       LOGGER.e(e, "Exception!");

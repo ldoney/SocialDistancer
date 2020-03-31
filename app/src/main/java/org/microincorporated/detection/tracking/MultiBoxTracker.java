@@ -81,11 +81,11 @@ public class MultiBoxTracker {
     boxPaint.setStrokeCap(Cap.ROUND);
     boxPaint.setStrokeJoin(Join.ROUND);
     boxPaint.setStrokeMiter(100);
-
     textSizePx =
         TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, context.getResources().getDisplayMetrics());
     borderedText = new BorderedText(textSizePx);
+    borderedText.setExteriorColor(Color.WHITE);
   }
 
   public synchronized void setFrameConfiguration(
@@ -149,6 +149,7 @@ public class MultiBoxTracker {
     for (final TrackedRecognition recognition : trackedObjects) {
       if(recognition.title.equals("person"))
       {
+        Paint borderBoxPaint = new Paint(Color.GREEN);
         final RectF trackedPos = new RectF(recognition.location);
         getFrameToCanvasMatrix().mapRect(trackedPos);
         double width = recognition.location.width();
@@ -157,18 +158,20 @@ public class MultiBoxTracker {
         if(width < 475 && height < 110)
         {
           boxPaint.setColor(Color.GREEN);
+          borderBoxPaint.setColor(Color.GREEN);
           labelString = "Safe!";
         }else
         {
           this.isClear = false;
           labelString = "Too close!";
           boxPaint.setColor(Color.RED);
+          borderBoxPaint.setColor(Color.RED);
         }
         boxPaint.setAlpha(178);
         boxPaint.setStyle(Style.FILL);
         float cornerSize = Math.min(trackedPos.width(), trackedPos.height()) / 8.0f;
         canvas.drawRoundRect(trackedPos, cornerSize, cornerSize, boxPaint);
-       // borderedText.drawText(canvas, trackedPos.left + cornerSize, trackedPos.top + 25, labelString);
+        borderedText.drawText(trackedPos, canvas, trackedPos.left + cornerSize, trackedPos.top, labelString, borderBoxPaint);
       }
     }
   }

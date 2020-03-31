@@ -21,7 +21,13 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
+
+import androidx.core.content.res.ResourcesCompat;
+
+import org.microincorporated.detection.R;
+
 import java.util.Vector;
 
 /** A class that encapsulates the tedious bits of rendering legible, bordered text onto a canvas. */
@@ -50,6 +56,7 @@ public class BorderedText {
    * @param textSize text size in pixels
    */
   public BorderedText(final int interiorColor, final int exteriorColor, final float textSize) {
+    Typeface tf = Typeface.MONOSPACE;
     interiorPaint = new Paint();
     interiorPaint.setTextSize(textSize);
     interiorPaint.setColor(interiorColor);
@@ -65,6 +72,8 @@ public class BorderedText {
     exteriorPaint.setAntiAlias(false);
     exteriorPaint.setAlpha(255);
 
+    interiorPaint.setTypeface(tf);
+    exteriorPaint.setTypeface(tf);
     this.textSize = textSize;
   }
 
@@ -77,7 +86,41 @@ public class BorderedText {
     canvas.drawText(text, posX, posY, exteriorPaint);
     canvas.drawText(text, posX, posY, interiorPaint);
   }
+  public void drawText(
+          final RectF trackedPos, final Canvas canvas, final float posX, final float posY, final String text, Paint bgPaint) {
 
+    float width = exteriorPaint.measureText(text);
+    float textSize = exteriorPaint.getTextSize();
+    Rect r = new Rect();
+    Paint paint = new Paint(bgPaint);
+    paint.setStyle(Paint.Style.FILL);
+    paint.setAlpha(255);
+
+    int mTextWidth, mTextHeight;
+
+    interiorPaint.getTextBounds(text.substring(0, text.length()), 0, text.length(), r);
+    interiorPaint.setColor(Color.BLACK);
+
+    mTextWidth = (int)(interiorPaint.measureText(text));
+    mTextHeight = r.height();
+
+    r.set((int) trackedPos.left, (int)trackedPos.top, (int)trackedPos.right, (int) (trackedPos.top + mTextHeight + 15));
+    canvas.drawRect(r, paint);
+// Later when you draw...
+    canvas.drawText(text, r.centerX() - (mTextWidth / 2f), r.centerY() + (mTextHeight / 2f),interiorPaint);
+  }
+
+  private int determineMaxTextSize(String str, float maxWidth)
+  {
+    int size = 0;
+    Paint paint = new Paint();
+
+    do {
+      paint.setTextSize(++ size);
+    } while(paint.measureText(str) < maxWidth);
+
+    return size;
+  }
   public void drawText(
       final Canvas canvas, final float posX, final float posY, final String text, Paint bgPaint) {
 
@@ -85,9 +128,8 @@ public class BorderedText {
     float textSize = exteriorPaint.getTextSize();
     Paint paint = new Paint(bgPaint);
     paint.setStyle(Paint.Style.FILL);
-    paint.setAlpha(160);
+    paint.setAlpha(255);
     canvas.drawRect(posX, (posY + (int) (textSize)), (posX + (int) (width)), posY, paint);
-
     canvas.drawText(text, posX, (posY + textSize), interiorPaint);
   }
 

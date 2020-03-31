@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.microincorporated.detection">
 
@@ -14,23 +15,25 @@
         android:label="@string/tfe_od_app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.ObjectDetection">
+        <activity android:name=".InfoActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-2006923484031604~8393105852"/>
+            android:value="ca-app-pub-2006923484031604~9878567594" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name="org.microincorporated.detection.DetectorActivity"
+            android:name=".DetectorActivity"
             android:label="@string/tfe_od_app_name"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>
