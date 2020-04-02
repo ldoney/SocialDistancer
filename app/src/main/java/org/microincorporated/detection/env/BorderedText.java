@@ -109,7 +109,6 @@ public class BorderedText {
 // Later when you draw...
     canvas.drawText(text, r.centerX() - (mTextWidth / 2f), r.centerY() + (mTextHeight / 2f),interiorPaint);
   }
-
   private int determineMaxTextSize(String str, float maxWidth)
   {
     int size = 0;

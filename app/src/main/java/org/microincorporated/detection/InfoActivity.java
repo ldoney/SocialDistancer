@@ -22,7 +22,7 @@ public class InfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_page);
-        ImageButton back  = (ImageButton) findViewById(R.id.BackButton);
+        ImageButton back  = (ImageButton) findViewById(R.id.InfoButton);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +36,7 @@ public class InfoActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-        mAdView = findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
