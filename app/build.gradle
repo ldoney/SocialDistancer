@@ -8,8 +8,8 @@ android {
         applicationId "org.microincorporated.socialdistancer"
         minSdkVersion 22
         targetSdkVersion 28
-        versionCode 3
-        versionName "1.3"
+        versionCode 6
+        versionName "1.6"
     }
     buildTypes {
         release {
@@ -22,6 +22,7 @@ android {
         }
     }
     aaptOptions {
+        cruncherEnabled = true
         noCompress "tflite"
     }
     compileOptions {

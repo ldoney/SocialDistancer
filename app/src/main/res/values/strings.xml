@@ -1,4 +1,5 @@
 <resources>
     <string name="tfe_od_app_name" translation_description="Object Detection demo app [CHAR_LIMIT=40]">Social Distancer</string>
     <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+    <string name="info_text" translation_description="Info page info">Information \n \nThis simple but useful App uses your phone’s camera to alert you when someone is within your six-foot safety zone. If someone is within 6 feet, the box around the person turns red. If the person is more than 6 feet away (approximately 2 meters), the the box around the person turns green. \n\n This app works best with the newest phone models. If your phone is old, be careful with the battery drainage.</string>
 </resources>

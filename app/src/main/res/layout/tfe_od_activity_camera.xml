@@ -19,9 +19,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00000000">
+    android:background="#000000">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="683dp"
         android:background="@android:color/black"
@@ -46,31 +47,40 @@
             android:background="@color/tfe_semi_transparent"
             android:orientation="horizontal"
             android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:visibility="visible">
 
             <TextView
                 android:id="@+id/Title"
-                android:layout_width="295dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:fontFamily="monospace"
-                android:text="Social Distancer"
+                android:text="@string/tfe_od_app_name"
                 android:textAlignment="center"
                 android:textColor="#FF0000"
-                android:textSize="25dp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/InfoButton"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="right|center_vertical"
-                android:background="#00FFFFFF"
-                android:scaleX="1"
-                android:scaleY="1"
-                android:src="@android:drawable/ic_menu_info_details"
-                android:tint="#FF0000"
-                android:visibility="visible" />
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/InfoButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="5sp"
+                    android:background="#00FFFFFF"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    android:src="@android:drawable/ic_menu_info_details"
+                    android:tint="#FF0000"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
