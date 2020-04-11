@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.graphics.drawable.DrawableContainer;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
@@ -43,7 +44,10 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 
 import android.preference.PreferenceManager;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Size;
+import android.view.Display;
 import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -106,6 +110,8 @@ public abstract class CameraActivity extends AppCompatActivity
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
     super.onCreate(null);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     setContentView(R.layout.tfe_od_activity_camera);
@@ -467,6 +473,11 @@ public abstract class CameraActivity extends AppCompatActivity
 
     Fragment fragment;
     if (useCamera2API) {
+      DisplayMetrics metrics = new DisplayMetrics();
+      getWindowManager().getDefaultDisplay().getMetrics(metrics);
+      int heightPixels = metrics.heightPixels;
+      int widthPixels = metrics.widthPixels;
+      Log.i("Size", widthPixels + " " + heightPixels);
       CameraConnectionFragment camera2Fragment =
           CameraConnectionFragment.newInstance(
               new CameraConnectionFragment.ConnectionCallback() {
@@ -479,7 +490,9 @@ public abstract class CameraActivity extends AppCompatActivity
               },
               this,
               getLayoutId(),
-              getDesiredPreviewFrameSize());
+              new Size((int)heightPixels, (int)widthPixels)
+
+          );
 
       camera2Fragment.setCamera(cameraId);
       fragment = camera2Fragment;

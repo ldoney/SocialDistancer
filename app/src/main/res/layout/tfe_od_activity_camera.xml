@@ -24,7 +24,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="683dp"
+        android:layout_height="match_parent"
         android:background="@android:color/black"
         android:orientation="vertical">
 
@@ -39,38 +39,36 @@
 
         </FrameLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:background="@color/tfe_semi_transparent"
-            android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
             android:visibility="visible">
 
             <TextView
                 android:id="@+id/Title"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:fontFamily="monospace"
                 android:text="@string/tfe_od_app_name"
                 android:textAlignment="center"
                 android:textColor="#FF0000"
-                android:textSize="25sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageButton
                     android:id="@+id/InfoButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
                     android:layout_gravity="center_vertical|end"
                     android:layout_marginEnd="5sp"
                     android:background="#00FFFFFF"
@@ -81,7 +79,7 @@
                     android:visibility="visible" />
             </RelativeLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -91,7 +89,8 @@
         android:layout_gravity="bottom"
         android:background="#000000"
         android:gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="visible">
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView2"
