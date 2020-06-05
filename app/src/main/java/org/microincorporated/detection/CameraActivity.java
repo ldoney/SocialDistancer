@@ -473,11 +473,6 @@ public abstract class CameraActivity extends AppCompatActivity
 
     Fragment fragment;
     if (useCamera2API) {
-      DisplayMetrics metrics = new DisplayMetrics();
-      getWindowManager().getDefaultDisplay().getMetrics(metrics);
-      int heightPixels = metrics.heightPixels;
-      int widthPixels = metrics.widthPixels;
-      Log.i("Size", widthPixels + " " + heightPixels);
       CameraConnectionFragment camera2Fragment =
           CameraConnectionFragment.newInstance(
               new CameraConnectionFragment.ConnectionCallback() {
@@ -490,7 +485,7 @@ public abstract class CameraActivity extends AppCompatActivity
               },
               this,
               getLayoutId(),
-              new Size((int)heightPixels, (int)widthPixels)
+                  getDesiredPreviewFrameSize()
 
           );
 
